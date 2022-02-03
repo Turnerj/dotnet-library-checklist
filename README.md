@@ -47,7 +47,7 @@ ReadOnlySpan<char> result = myString.AsSpan().Slice(4, 8);
 ```
 
 See also:
-- [Adamn Sitnik's post on Span](https://adamsitnik.com/Span/)
+- [Adam Sitnik's post on Span](https://adamsitnik.com/Span/)
 
 ### Expose your own Span/Memory APIs where appropriate
 

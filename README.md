@@ -18,7 +18,7 @@ From [MSDN](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/nu
 
 📖 [How to create a Symbols Package](https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages-snupkg)
 
-### Enable Deterministic Builds (.snupkg)
+### Enable Deterministic Builds
 
 From [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/code-generation#deterministic):
 > Causes the compiler to produce an assembly whose byte-for-byte output is identical across compilations for identical inputs.

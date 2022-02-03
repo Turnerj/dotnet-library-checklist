@@ -37,13 +37,13 @@ Enabling Deterministic Builds by adding the following to your project:
 From [MSDN](https://docs.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines):
 > .NET Core includes a number of types that represent an arbitrary contiguous region of memory. .NET Core 2.0 introduced `Span<T>` and `ReadOnlySpan<T>`, which are lightweight memory buffers that wrap references to managed or unmanaged memory. Because these types can only be stored on the stack, they are unsuitable for a number of scenarios, including asynchronous method calls. .NET Core 2.1 adds a number of additional types, including `Memory<T>`, `ReadOnlyMemory<T>`, `IMemoryOwner<T>`, and `MemoryPool<T>`. Like `Span<T>`, `Memory<T>` and its related types can be backed by both managed and unmanaged memory. Unlike `Span<T>`, `Memory<T>` can be stored on the managed heap.
 
-Example
+Example (Getting a piece of a string)
 ```csharp
 // Before
-var result = myString.Substring(4, 8);
+string result = myString.Substring(4, 8);
 
 // After
-var result = myString.AsSpan().Slice(4, 8);
+ReadOnlySpan<char> result = myString.AsSpan().Slice(4, 8);
 ```
 
 See also:

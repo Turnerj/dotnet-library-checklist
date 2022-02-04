@@ -23,10 +23,17 @@ From [MSDN](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/nu
 From [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/code-generation#deterministic):
 > Causes the compiler to produce an assembly whose byte-for-byte output is identical across compilations for identical inputs.
 
-Enabling Deterministic Builds by adding the following to your project:
+Enabling Deterministic builds by adding the following to your project:
 ```xml
-<Deterministic>true</Deterministic>
+<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 ```
+
+Or alternatively as an MSBuild flag:
+```
+dotnet pack /p:ContinuousIntegrationBuild=true
+```
+
+Note: The official MSDN docs may be incorrect as it specifies `<Deterministic>true</Deterministic>`. This doesn't seem to do anything and doesn't satisfy the "Deterministic" flag in NuGet Package Manager.
 
 📖 [Learn more about Reproducible Builds](https://en.wikipedia.org/wiki/Reproducible_builds)
 

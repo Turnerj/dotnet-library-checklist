@@ -11,12 +11,18 @@ From [MSDN](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/so
 
 📖 [How to add Source Link to your project](https://github.com/dotnet/sourcelink/blob/main/README.md#using-source-link-in-net-projects)
 
-### Create Symbol Package (.snupkg)
+### Embedding Symbols
 
-From [MSDN](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/nuget#symbol-packages):
-> Symbol files (*.pdb) are produced by the .NET compiler alongside assemblies. Symbol files map execution locations to the original source code so you can step through source code as it is running using a debugger. NuGet supports generating a separate symbol package (*.snupkg) containing symbol files alongside the main package containing .NET assemblies. The idea of symbol packages is they're hosted on a symbol server and are only downloaded by a tool like Visual Studio on demand.
+Symbol files map execution locations to the original source code so you can step through source code as it is running using a debugger.
 
-📖 [How to create a Symbols Package](https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages-snupkg)
+While not documented as the recommended solution [on MSDN](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/nuget#symbol-packages), it has been [discussed in the .NET SDK repository](https://github.com/dotnet/sdk/issues/2679) and later [in a Microsoft blog post](https://devblogs.microsoft.com/dotnet/producing-packages-with-source-link/) that embedded symbols may be the best way to provide symbols to consumers.
+
+Embed symbols in your packages by adding the following to your project:
+```xml
+<DebugType>embedded</DebugType>
+```
+
+📖 [Understanding symbol files and Visual Studio's symbol settings](https://devblogs.microsoft.com/devops/understanding-symbol-files-and-visual-studios-symbol-settings/)
 
 ### Enable Deterministic Builds
 

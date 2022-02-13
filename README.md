@@ -59,6 +59,40 @@ Note: The official MSDN docs may be incorrect as it specifies `<Deterministic>tr
 
 📖 [Learn more about Reproducible Builds](https://en.wikipedia.org/wiki/Reproducible_builds)
 
+### Write and Generate XML Docs
+
+From [MSDN](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/):
+> C# source files can have structured comments that produce API documentation for the types defined in those files. The C# compiler produces an XML file that contains structured data representing the comments and the API signatures. Other tools can process that XML output to create human-readable documentation in the form of web pages or PDF files, for example.
+
+Example of XML documentation for a class:
+```csharp
+/// <summary>
+///  This class performs an important function.
+/// </summary>
+public class MyClass {}
+```
+
+Additionally, add this to your project for an XML docs file to be generated when you package up your project.
+This will allows others to access your documentation from inside their code editor.
+
+```xml
+<GenerateDocumentationFile>true</GenerateDocumentationFile>
+```
+
+#### Tips when writing XML docs
+
+Beyond some of the automatically generated tags that appear when you type `///` in different spots, there are a few tips to help improve your documentation.
+
+1. Use `<see cref="MyTypeOrProperty"/>` to point to a specific type or property. Depending on the preview tool (eg. Visual Studio), it will display a link to jump to that reference. It will also be automatically updated in Visual Studio if you rename the reference.
+2. Use `<inheritdoc/>` to avoid repeating yourself from base types, interfaces or overridden properties. You can use it inconjunction with other tags like `<remarks>` to inherit most of the docs but selectively override different parts.
+3. You can use `<paramref name="parameterName"/>` inside other blocks like `<summary>` or `<remarks>`. Similar to `<see>` blocks, it provides a reference rather than a constant string. There is also `<typeparamref name="TMyTypeParam"/>`.
+4. You can use `<para></para>` to define paragraphs within your documentation. You can alternatively use `<br>` but support might very on tools that process the documentation file.
+5. You can link out to websites with `<see href="https://example.org/">My Link</see>`. Alternatively you can use `<a href=""></a>` though support may vary between tools.
+6. Use `<c>My.Piece.OfCode();</c>` to show a single line example of code.
+7. Use the `langword` attribute (eg. `<see langword="while" />`) to reference a language keyword in the docs.
+
+📖 [XML documentation comments - document APIs using `///` comments](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/)
+
 ## Performance Considerations
 
 ### Use Reduced-allocation APIs (Span/Memory)

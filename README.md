@@ -9,7 +9,23 @@ A work-in-progress "living" checklist of things to do as a .NET library author.
 From [MSDN](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/sourcelink):
 > Source Link is a technology that enables source code debugging of .NET assemblies from NuGet by developers. Source Link executes when creating the NuGet package and embeds source control metadata inside assemblies and the package. Developers who download the package and have Source Link enabled in Visual Studio can step into its source code. Source Link provides source control metadata to create a great debugging experience.
 
-📖 [How to add Source Link to your project](https://github.com/dotnet/sourcelink/blob/main/README.md#using-source-link-in-net-projects)
+Configure Source Link by adding the follow to your project:
+```xml
+<PropertyGroup>
+    <!-- Optional: Include the repository URL in the NuGet package -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed untracked source files in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+</PropertyGroup>
+<ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+</ItemGroup>
+```
+
+If you're not using GitHub, there are alternative Source Link packages to reference instead.
+There are packages for GitHub, GitLab, Azure Repos, Bitbucket and others.
+
+📖 [Source Link and .NET libraries](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/sourcelink)
 
 ### Embedding Symbols
 

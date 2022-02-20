@@ -50,7 +50,15 @@ Enabling Deterministic builds by adding the following to your project:
 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 ```
 
-Or alternatively as an MSBuild flag:
+As noted in [a Microsoft blog post about deterministic builds](https://devblogs.microsoft.com/dotnet/producing-packages-with-source-link/#deterministic-builds), it should only be enabled on your CI otherwise it can affect local debugging. This can be accomplished by adding a condition to the surrounding `PropertyGroup` like:
+
+```xml
+<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+</PropertyGroup>
+```
+
+Or alternatively as an MSBuild flag in your specific CI build script:
 ```
 dotnet pack /p:ContinuousIntegrationBuild=true
 ```

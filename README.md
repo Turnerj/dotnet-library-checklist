@@ -178,7 +178,7 @@ From [MSDN](https://docs.microsoft.com/en-us/dotnet/core/compatibility/categorie
 public void OldMethod() { }
 // After
 public void OldMethod() { }
-public void NewMethod() { }
+public void NewMethod(object obj) { }
 ```
 
 ❌ Breaks Compatibility

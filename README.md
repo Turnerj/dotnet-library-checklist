@@ -175,18 +175,18 @@ From [MSDN](https://docs.microsoft.com/en-us/dotnet/core/compatibility/categorie
 ✔ Keeps Compatibility
 ```csharp
 // Before
-public void OldMethod() { }
+public void MyMethod() { }
 // After
-public void OldMethod() { }
-public void NewMethod() { }
+public void MyMethod() { }
+public void MyMethod(object obj) { }
 ```
 
 ❌ Breaks Compatibility
 ```csharp
 // Before
-public void OldMethod() { }
+public void MyMethod() { }
 // After
-public void OldMethod(object obj = null) { }
+public void MyMethod(object obj = null) { }
 ```
 
 👋 If you have more obscure examples of binary compatibility, please submit a PR!
